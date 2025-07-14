@@ -14,7 +14,7 @@ jobs:
 
       - name: Download reapack-index
         run: |
-          curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/reapack-index > reapack-index
+          curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/index > reapack-index
           chmod +x reapack-index
 
       - name: Generate index.xml
