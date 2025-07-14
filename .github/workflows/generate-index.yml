@@ -12,16 +12,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-
-      - name: Install reapack-index from GitHub
-        run: pip install git+https://github.com/cfillion/reapack-index.git
+      - name: Download reapack-index
+        run: |
+          curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/reapack-index > reapack-index
+          chmod +x reapack-index
 
       - name: Generate index.xml
-        run: reapack-index --generate index.xml .
+        run: ./reapack-index --generate index.xml .
 
       - name: Commit and push index.xml
         run: |
