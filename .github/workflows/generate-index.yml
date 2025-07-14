@@ -5,10 +5,12 @@ on:
     branches: [main]
 
 jobs:
-  index:
+  generate:
+    name: Build index.xml
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -19,14 +21,13 @@ jobs:
       - name: Install reapack-index
         run: pip install reapack-index
 
-      - name: Generate index.xml
-        run: |
-          reapack-index -q --generate index.xml .
+      - name: Generate index
+        run: reapack-index --generate index.xml .
 
-      - name: Commit and push
+      - name: Commit index.xml
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add index.xml
-          git commit -m "Auto-generate index.xml" || echo "No changes"
-          git push
+          git commit -m "Auto-update index.xml" || echo "No changes to commit"
+          git push origin main
