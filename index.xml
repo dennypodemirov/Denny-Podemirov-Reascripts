@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reapack repository="DennyPodemirov ReaScripts">
+  <addon>
+    <type>script</type>
+    <name>Copy Track Color.lua</name>
+    <author>Denny Podemirov</author>
+    <version>1.1</version>
+    <description>Copy selected track’s color to clipboard and extstate</description>
+    <provides>Scripts/DennyPodemirov/Copy Track Color.lua</provides>
+    <link>https://github.com/dennypodemirov/reaper-scripts/raw/main/Scripts/DennyPodemirov/Copy%20Track%20Color.lua</link>
+    <date>2025-07-14</date>
+  </addon>
+  <addon>
+    <type>script</type>
+    <name>Paste Track Color.lua</name>
+    <author>Denny Podemirov</author>
+    <version>1.0</version>
+    <description>Paste copied track color to selected tracks</description>
+    <provides>Scripts/DennyPodemirov/Paste Track Color.lua</provides>
+    <link>https://github.com/dennypodemirov/reaper-scripts/raw/main/Scripts/DennyPodemirov/Paste%20Track%20Color.lua</link>
+    <date>2025-07-14</date>
+  </addon>
+  <addon>
+    <type>script</type>
+    <name>HEX Color.lua</name>
+    <author>Denny Podemirov</author>
+    <version>1.0</version>
+    <description>Apply user-input HEX color to selected tracks</description>
+    <provides>Scripts/DennyPodemirov/HEX Color.lua</provides>
+    <link>https://github.com/dennypodemirov/reaper-scripts/raw/main/Scripts/DennyPodemirov/HEX%20Color.lua</link>
+    <date>2025-07-14</date>
+  </addon>
+</reapack>
