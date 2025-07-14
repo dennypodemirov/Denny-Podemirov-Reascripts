@@ -1,0 +1,32 @@
+name: Generate ReaPack index
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install reapack-index
+        run: pip install reapack-index
+
+      - name: Generate index.xml
+        run: |
+          reapack-index -q --generate index.xml .
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add index.xml
+          git commit -m "Auto-generate index.xml" || echo "No changes"
+          git push
