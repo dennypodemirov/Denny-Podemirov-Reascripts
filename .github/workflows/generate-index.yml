@@ -6,7 +6,6 @@ on:
 
 jobs:
   generate:
-    name: Build index.xml
     runs-on: ubuntu-latest
 
     steps:
@@ -18,16 +17,16 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install reapack-index
-        run: pip install reapack-index
+      - name: Install reapack-index from GitHub
+        run: pip install git+https://github.com/cfillion/reapack-index.git
 
-      - name: Generate index
+      - name: Generate index.xml
         run: reapack-index --generate index.xml .
 
-      - name: Commit index.xml
+      - name: Commit and push index.xml
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add index.xml
-          git commit -m "Auto-update index.xml" || echo "No changes to commit"
-          git push origin main
+          git commit -m "Auto-generate index.xml" || echo "No changes"
+          git push
