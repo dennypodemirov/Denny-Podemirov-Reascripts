@@ -12,19 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
-
-      - name: Install required Ruby gems
-        run: gem install reapack
-
-      - name: Download reapack-index script
-        run: curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/bin/reapack-index > reapack-index
-
-      - name: Generate index.xml
-        run: ruby reapack-index --generate index.xml .
+      - name: Generate index.xml using Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/repo \
+            ghcr.io/cfillion/reapack-index \
+            --generate /repo/index.xml /repo
 
       - name: Commit and push index.xml
         run: |
