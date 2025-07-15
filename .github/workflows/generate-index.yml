@@ -12,13 +12,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Download reapack-index
-        run: |
-          curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/bin/reapack-index > reapack-index
-          chmod +x reapack-index
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Install required Ruby gems
+        run: gem install reapack
+
+      - name: Download reapack-index script
+        run: curl -L https://raw.githubusercontent.com/cfillion/reapack-index/master/bin/reapack-index > reapack-index
 
       - name: Generate index.xml
-        run: ./reapack-index --generate index.xml .
+        run: ruby reapack-index --generate index.xml .
 
       - name: Commit and push index.xml
         run: |
