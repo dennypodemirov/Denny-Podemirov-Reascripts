@@ -10,7 +10,7 @@
     </reapack>
   </category>
 
-  <!-- Effects -->
+  <!-- Effects 
   <category name="sub folder name here">
     <reapack name="script name" type="effect" desc="script name">
       <version name="1.0" author="your name here" time="08-06-2025">
@@ -18,5 +18,5 @@
       </version>
     </reapack>
   </category>
-
+-->
 </index>
