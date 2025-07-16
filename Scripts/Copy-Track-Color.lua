@@ -26,4 +26,5 @@ end
 
 local hex = BGRtoHEX(color)
 
+
 reaper.CF_SetClipboard(hex)
