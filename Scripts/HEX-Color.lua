@@ -5,7 +5,7 @@
 --   Prompts the user for a HEX color (RRGGBB) and applies it
 --   to all selected tracks.
 -- @provides
---   [main] Scripts > HEX-Color.lua
+--   [main] . > HEX-Color.lua
 -- @link https://github.com/dennypodemirov/Denny-Podemirov-Reascripts
 
 local retval, input = reaper.GetUserInputs("HEX Color", 1, "Enter HEX (RRGGBB):", "")
