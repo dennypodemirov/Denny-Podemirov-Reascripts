@@ -1,36 +1,33 @@
-name: Generate ReaPack index
+name: Generate index.xml
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ruby ruby-dev build-essential
-          gem install addressable colorize gitable toml
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
 
-      - name: Clone reapack-index
-        run: |
-          git clone https://github.com/cfillion/reapack-index.git tools/reapack-index
+    - name: Install reapack-index
+      run: gem install reapack-index
 
-      - name: Generate index.xml
-        run: |
-          cd tools/reapack-index
-          RUBYLIB=lib ruby reapack-index --generate ../../index.xml ../../
+    - name: Generate index.xml
+      run: reapack-index -i Scripts -o index.xml
 
-      - name: Commit and push index.xml
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add index.xml
-          git commit -m "Auto-generate index.xml" || echo "No changes"
-          git push
+    - name: Commit and push index.xml
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add index.xml
+        git commit -m "Update index.xml"
+        git push
