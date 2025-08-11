@@ -5,7 +5,7 @@
 --   Applies the track color saved previously via Copy Track Color
 --   to all selected tracks.
 -- @provides
---   [main] Scripts > Paste-Track-Color.lua
+--   [main] . > Paste-Track-Color.lua
 -- @link https://github.com/dennypodemirov/Denny-Podemirov-Reascripts
 
 local val = reaper.GetExtState("TrackColorTool", "lastColor")
