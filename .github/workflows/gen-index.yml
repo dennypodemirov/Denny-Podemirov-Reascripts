@@ -1,33 +1,38 @@
-name: Generate index.xml
+name: Generate ReaPack index.xml
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-    - name: Set up Ruby
+    - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.0'
 
-    - name: Install reapack-index
+    - name: Install reapack-index gem
       run: gem install reapack-index
 
     - name: Generate index.xml
       run: reapack-index -i Scripts -o index.xml
 
-    - name: Commit and push index.xml
+    - name: Commit and push changes if index.xml changed
       run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
         git add index.xml
-        git commit -m "Update index.xml"
-        git push
+        if ! git diff --cached --quiet; then
+          git commit -m "Auto-update index.xml [skip ci]"
+          git push
+        else
+          echo "No changes in index.xml"
+        fi
