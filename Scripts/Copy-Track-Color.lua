@@ -6,7 +6,7 @@
 --   and copies its HEX code (in RGB) to the clipboard.
 --   Requires SWS extension to access clipboard.
 -- @provides
---   [main] Scripts > Copy-Track-Color.lua
+--   [main] . > Copy-Track-Color.lua
 -- @link https://github.com/dennypodemirov/Denny-Podemirov-Reascripts
 
 local track = reaper.GetSelectedTrack(0, 0)
